@@ -10,6 +10,11 @@ function generateMealPlan() {
   var thursdayMeal = document.getElementById("thursday").value;
   var fridayMeal = document.getElementById("friday").value;
   var saturdayMeal = document.getElementById("saturday").value;
+  // Validate email address
+  if (!validateEmail(email)) {
+    alert("Please enter a valid email address.");
+    return; // Stop execution if email is invalid
+  }
 
   myText = "<html>\n<head>\n<title>Meal Plan</title>\n</head>\n<body>\n";
   myText += name + ", here is your meal plan for the week.";
@@ -36,8 +41,36 @@ function generateMealPlan() {
   plan.document.write("<h2>Friday</h2><p>" + fridayMeal + "</p>");
   plan.document.write("<h2>Saturday</h2><p>" + saturdayMeal + "</p>");
   plan.document.write("</body></html>");
+
+  //Add Download b utton
+  plan.document.write('<button id="downloadBtn">Download</button>');
+  plan.document
+    .getElementById("downloadBtn")
+    .addEventListener("click", function () {
+      var content = plan.document.documentElement.outerHTML;
+      var blob = new Blob([content], { type: "text/html" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = "meal_plan.html";
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+  // Add print button
+  plan.document.write('<button id="printBtn">Print</button>');
+  plan.document
+    .getElementById("printBtn")
+    .addEventListener("click", function () {
+      plan.print();
+    });
 }
 
 function clearForm() {
   document.getElementById("mealPlanForm").reset();
+}
+function validateEmail(email) {
+  // Regular expression for email validation
+  var re = /\S+@\S+\.\S+/;
+  return re.test(email);
 }
