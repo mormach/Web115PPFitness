@@ -9,10 +9,24 @@
     />
     <title>WEB-115 Final Project</title>
     <link rel="stylesheet" href="styles.css" />
+    <style>
+      .banner {
+        position: relative;
+        padding-top: 500px;
+      }
+
+      .banner img {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    </style>
   </head>
   <body>
     <!--Banner goes here-->
     <div class="banner">
+      <img src="healthy_life.png" alt="Banner Image" />
       <h1>Perfectly Portioned Fitness</h1>
       <p>Name: Morgan Roman Mach | Course: WEB-115 | Section: 0002</p>
       <h2>Build Your Meal Plan</h2>
@@ -31,6 +45,8 @@
         <input type="text" id="goal" name="goal" required /><br /><br />
 
         <h3>Meal Plan for the Week</h3>
+        Input your planned breakfast, snack, lunch, snack, and dinner. <br />
+        <br />
 
         <label for="sunday">Sunday: </label>
         <input type="text" id="sunday" name="sunday" required />
